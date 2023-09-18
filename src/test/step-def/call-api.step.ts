@@ -8,11 +8,9 @@ let apiService: APIService;
 
 Given("User call the token generation api", async function () {
   apiService = new APIService(this.page);
-  //let tok = await apiService.getToken();
-  let resp = await apiService.getRequest(
-    endpoints.getProvinceURL,
-    await apiService.getToken()
-  );
+  let tok = await apiService.getToken();
+  ///fetch the countryStateProvincesList
+  let resp = await apiService.getRequest(endpoints.getProvinceURL, tok);
   console.log(resp);
 });
 
