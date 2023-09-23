@@ -13,8 +13,7 @@ let response: APIResponse;
 const token = createTokenHeader();
 const header = defaultHeader();
 const createTokenURL =
-  "https://cnapreview.okta.com/oauth2/aus97z9wk98gzOGFD297/v1/token?clientId=0oac6ul49eJLlMsEj297&grant_type=client_credentials&scope=scope:openid:billing:jupiter:read";
-
+  ""
 interface RequestOptions {
   data?: Record<string, any>;
   headers?: Record<string, string>;

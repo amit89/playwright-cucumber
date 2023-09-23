@@ -3,14 +3,15 @@ import APIService from "../../helper/api-helper";
 import { endpoints } from "../../config/endpoints";
 import API from "../../helper/api";
 import { readJsonFile } from "../../helper/read-write";
+import {PostgresQuery} from "../../db/db-query";
+import {pgConfig} from "../../db/db-config"
 
 let apiService: APIService;
 
 Given("User call the token generation api", async function () {
-  apiService = new APIService(this.page);
-  let tok = await apiService.getToken();
-  ///fetch the countryStateProvincesList
-  let resp = await apiService.getRequest(endpoints.getProvinceURL, tok);
+
+  apiService = new APIService();
+  let resp = await apiService.getRequest(endpoints.getProvinceURL, await apiService.getToken());
   console.log(resp);
 });
 
@@ -22,9 +23,8 @@ Given("USer fetch the token from the response", async function () {
 });
 
 Given("user call the get api to fetch the user list", async function () {
-  apiService = new APIService(this.page);
-  let tok = await apiService.getToken();
+  apiService = new APIService();
   let data = readJsonFile("test-data/post-req.json");
-  let resp = await apiService.postRequest(endpoints.getProvinceURL, tok, data);
+  let resp = await apiService.postRequest(endpoints.getProvinceURL, await apiService.getToken(), data);
   console.log(resp);
 });

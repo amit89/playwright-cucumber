@@ -16,3 +16,6 @@ Feature: User Authentication tests
   And User call the token generation api
   And USer fetch the token from the response
   And user call the get api to fetch the user list
+
+  Scenario: Fetch the record from DB
+  Given User make db query call to fetch the reord
