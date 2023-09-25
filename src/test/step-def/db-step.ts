@@ -1,6 +1,7 @@
 import {PostgresQuery} from "../../db/db-query";
 import {pgConfig} from "../../db/db-config";
 import { Given } from "@cucumber/cucumber";
+import {executeBatch} from "../../helper/read-write";
 
 
 Given('User make db query call to fetch the reord', async function () {

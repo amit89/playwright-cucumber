@@ -1,0 +1,3 @@
+{
+    "GET_USER_LIST": "SELECT * FROM users"
+}

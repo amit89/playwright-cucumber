@@ -1,7 +1,10 @@
 import { ClientConfig } from 'pg';
 import * as dotenv from 'dotenv';
 
-dotenv.config();
+dotenv.config({
+  override: true,
+  path: `src/helper/env/.env.db`
+});
 
  export const pgConfig: ClientConfig = {
     user: process.env.DB_USER,
