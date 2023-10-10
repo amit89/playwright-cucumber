@@ -3,8 +3,10 @@ import PlaywrightWrapper from "../helper/wrapper/playwright-wrapper";
 import { Page , Browser, BrowserContext} from "@playwright/test";
 //let browser: Browser;
 
+
 export default class LoginPage  {
 
+  private newPage: Page | null = null;
   private base: PlaywrightWrapper;
 
 
@@ -13,7 +15,8 @@ export default class LoginPage  {
   }
 
   private Elements = {
-    bussinessLink: "a[href='/business/contact/']"
+    bussinessLink: "a[href='/business/contact/']",
+    firstName: "#navbar_sign_in_button"
 }
 
 async openHomePage() {
@@ -25,8 +28,19 @@ async openHomePage() {
 }
 
 async opentheLink(context: BrowserContext){
-  const newPage = await this.base.openNewtab(context, this.Elements.bussinessLink)
-  console.log(await newPage.title());
+  this.newPage = await this.base.openNewtab(context, this.Elements.bussinessLink)
+  console.log(await this.newPage.title());
+  return this.newPage
  }
-  
+
+ async clicOnLoginBUtton(){
+  if (this.newPage) {
+    const title = await this.newPage.title();
+    await this.newPage.locator(this.Elements.firstName).click();
+    await this.newPage.locator("#id_login").fill("amit.bbn@gmail.com");
+  } else {
+    throw new Error("New page is null.");
+  }
+}
+
 }
